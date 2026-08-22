@@ -1,0 +1,104 @@
+# ============================================
+# Terraform
+# ============================================
+
+# Local Terraform working directory
+**/.terraform/*
+
+# Terraform state files
+*.tfstate
+*.tfstate.*
+
+# Terraform state lock information
+.terraform.tfstate.lock.info
+
+# Terraform crash logs
+crash.log
+crash.*.log
+
+# Terraform variable files
+# May contain subscription IDs, credentials,
+# secrets, or environment-specific values
+*.tfvars
+*.tfvars.json
+
+# Terraform plan files
+*.tfplan
+tfplan
+tfplan.*
+*.plan
+
+# Terraform override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform CLI configuration
+.terraformrc
+terraform.rc
+
+
+# ============================================
+# Secrets / Credentials
+# ============================================
+
+# Environment variable files
+.env
+.env.*
+!.env.example
+
+# Generic secret files
+*.secret
+*.secrets
+secrets.*
+credentials.*
+credentials.json
+
+# Certificates / private keys
+*.pem
+*.key
+*.pfx
+*.p12
+
+
+# ============================================
+# Azure
+# ============================================
+
+# Local Azure CLI data if accidentally created
+.azure/
+
+# Azure authentication/context exports
+azureProfile.json
+accessTokens.json
+
+
+# ============================================
+# PowerShell
+# ============================================
+
+# PowerShell history / temporary files
+*.ps1~
+*.ps1.tmp
+
+# Local output/log files
+*.log
+
+
+# ============================================
+# VS Code
+# ============================================
+
+.vscode/
+
+# ============================================
+# Operating System
+# ============================================
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
