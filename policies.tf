@@ -1,3 +1,5 @@
+## Configures Azure Policy assignments for the subscription. The policy assignments enforce specific governance rules, such as requiring tags on resources, restricting allowed locations, and limiting virtual machine size SKUs. Each policy assignment references a built-in Azure Policy definition and includes parameters to customize the enforcement of the policies according to the organization's requirements. These assignments help ensure compliance with organizational standards and best practices across the Azure environment.
+
 data "azurerm_policy_definition" "required_tag" {
   display_name = "Require a tag and its value on resources"
 }

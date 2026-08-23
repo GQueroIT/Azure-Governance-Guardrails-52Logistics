@@ -1,3 +1,6 @@
+## Adds variables for the Azure subscription ID, resource group name, resource group location, and principal ID.
+## These variables are used in the provider configuration, resource group creation, and role assignment resources. Moreover, the subscription ID and principal ID are marked as sensitive to ensure that they are not displayed in logs or output.As the project grows in scope, additional variables can be added to this file to manage other aspects of the Azure environment, such as virtual networks, storage accounts, or other resources. This modular approach allows for better organization and maintainability of the Terraform codebase.
+
 variable "subscription_id" {
   description = "Azure subscription ID used for the 52 Logistics governance environment"
   type        = string
