@@ -85,6 +85,8 @@ accessTokens.json
 # Local output/log files
 *.log
 
+# Local validation evidence
+validation-session*.txt
 
 # ============================================
 # VS Code
