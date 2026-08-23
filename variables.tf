@@ -15,6 +15,12 @@ variable "resource_group_name" {
   type        = string
 }
 
+variable "resource_group_name_monitor" {
+  description = "The name of the monitoring resource group"
+  type        = string
+}
+
+
 variable "resource_group_location" {
   description = "The location of the resource group to create"
   type        = string
@@ -22,6 +28,17 @@ variable "resource_group_location" {
 
 variable "principal_id" {
   description = "The principal ID of the user or service principal to assign the role to"
+  type        = string
+  sensitive   = true
+}
+
+variable "budget_notification_email" {
+  description = "Email address used for Azure budget notifications"
+  type        = string
+}
+
+variable "governance_alert_email" {
+  description = "Email address used for governance and security alerts"
   type        = string
   sensitive   = true
 }
