@@ -22,6 +22,9 @@ The finished project combines Infrastructure as Code, Azure governance, monitori
 
 ## Architecture
 
+![Architecture](assets/governance-architecture.svg)
+
+
 The governance system follows this lifecycle:
 
 Terraform
