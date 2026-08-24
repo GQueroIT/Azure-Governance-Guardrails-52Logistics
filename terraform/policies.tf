@@ -31,6 +31,10 @@ resource "azurerm_subscription_policy_assignment" "allowed_locations" {
   policy_definition_id = data.azurerm_policy_definition.allowed_locations.id
   subscription_id      = data.azurerm_subscription.current.id
 
+not_scopes = [
+  azurerm_resource_group.monitoring_rg.id
+]
+
   not_scopes = [
     azurerm_resource_group.monitoring_rg.id
   ]

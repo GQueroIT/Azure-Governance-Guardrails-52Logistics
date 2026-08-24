@@ -90,6 +90,33 @@ That test helped me understand scoped access much more clearly than simply readi
 
 ---
 
+## Allowed Locations – Monitoring Exception
+
+The governance baseline restricts Azure resource deployment to
+East US and East US 2 through Azure Policy.
+
+During implementation, I found that governance and monitoring
+resources can require global or location-independent deployment
+behavior. Applying the Allowed Locations policy to the monitoring
+resource group could therefore interfere with deployment of the
+monitoring controls used to observe the environment.
+
+For this iteration, I intentionally excluded `monitoring_rg` from
+the Allowed Locations policy using Terraform's `not_scopes`.
+
+This exception is limited to the monitoring resource group. The
+primary workload environment remains governed by the regional
+restriction.
+
+### Future Improvement
+
+In a production iteration, I would reduce the scope of this
+exception by identifying the individual resource types that require
+global deployment and exempting only those resources rather than
+the entire monitoring resource group.
+
+---
+
 ## Azure Policy
 
 I used Azure Policy to establish guardrails around the environment, including controls for:

@@ -20,7 +20,7 @@ Write-Host ""
 Write-Host "Azure Policy Assignments"
 Write-Host "------------------------"
 
-$policyassignments = az policy assignment list | ConvertFrom-Json
+$policyAssignments = az policy assignment list | ConvertFrom-Json
 
 foreach ($policy in $policyAssignments) {
     Write-Host "Name: $($policy.name)"
@@ -86,7 +86,7 @@ foreach ($requiredPolicy in $requiredPolicies) {
 }
 Write-Host ""
 
-Write-Host "Government Audit Summary"
+Write-Host "Governance Audit Summary"
 Write-Host "------------------------"
 
 Write-Host "Policies Passed: $policyPassCount / $($requiredPolicies.count)"
@@ -96,7 +96,7 @@ if ($null -ne $expectedLock) {
     $lockStatus = $true
 }
 else {
-    Write-Host "Management Lock: Fail"
+    Write-Host "Management Lock: FAIL"
     $lockStatus = $false
 }
 
