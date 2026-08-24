@@ -22,7 +22,7 @@ The finished project combines Infrastructure as Code, Azure governance, monitori
 
 ## Architecture
 
-![Architecture](assets/governance-architecture.svg)
+![Architecture](assets/azure-governance-architecture.svg)
 
 
 The governance system follows this lifecycle:
