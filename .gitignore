@@ -2,8 +2,8 @@
 # Terraform
 # ============================================
 
-# Local Terraform working directory
-**/.terraform/*
+# Local Terraform working directories
+**/.terraform/**
 
 # Terraform state files
 *.tfstate
@@ -78,21 +78,23 @@ accessTokens.json
 # PowerShell
 # ============================================
 
-# PowerShell history / temporary files
+# PowerShell temporary files
 *.ps1~
 *.ps1.tmp
 
-# Local output/log files
+# Local logs
 *.log
 
-# Local validation evidence
+# Raw validation / troubleshooting transcripts
 validation-session*.txt
+
 
 # ============================================
 # VS Code
 # ============================================
 
 .vscode/
+
 
 # ============================================
 # Operating System
@@ -105,8 +107,10 @@ Desktop.ini
 # macOS
 .DS_Store
 
+
 # ============================================
-# Diagram.io
+# Draw.io / Architecture
 # ============================================
 
+# Ignore temporary text/XML working copy
 azure-governance-architecture.txt
