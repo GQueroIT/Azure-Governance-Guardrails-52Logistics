@@ -32,6 +32,12 @@ variable "principal_id" {
   sensitive   = true
 }
 
+variable "testuser_principal_id" {
+  description = "The principal ID of the test user or service principal to assign the role to"
+  type        = string
+  sensitive   = true
+}
+
 variable "budget_notification_email" {
   description = "Email address used for Azure budget notifications"
   type        = string
