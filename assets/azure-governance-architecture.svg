@@ -1,266 +1,206 @@
-<svg width="2560" height="1120" viewBox="0 0 2560 1120" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', -apple-system, Helvetica, Arial, sans-serif">
-<title>52 Logistics Azure Governance and Security Guardrails pipeline</title>
-<desc>A six stage pipeline: infrastructure as code, governance plane, Azure environment, monitoring and alerts, validation and recovery, and governance health.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid meet">
 <defs>
-<marker id="a-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#38BDF8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
-<marker id="a-slate" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#64748B" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></marker>
-<marker id="a-violet" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#C084FC" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
-<marker id="a-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#FB923C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
-<marker id="a-cyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#22D3EE" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#0B1020"/>
+    <stop offset="100%" stop-color="#111827"/>
+  </linearGradient>
+
+  <marker id="arrowPurple" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#8B5CF6"/></marker>
+  <marker id="arrowBurgundy" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#BE123C"/></marker>
+  <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#38BDF8"/></marker>
+  <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#EF4444"/></marker>
+  <marker id="arrowMagenta" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#D946EF"/></marker>
+  <marker id="arrowOrange" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#F97316"/></marker>
+  <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#4ADE80"/></marker>
+  <marker id="arrowGray" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#94A3B8"/></marker>
+
+  <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+    <feGaussianBlur stdDeviation="4" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+
+  <style><![CDATA[
+    text{font-family:"Segoe UI",Arial,sans-serif}
+    .title{fill:#F8FAFC;font-size:30px;font-weight:700}
+    .sub{fill:#94A3B8;font-size:15px}
+    .stage{fill:#CBD5E1;font-size:12px;font-weight:700;letter-spacing:1px}
+    .nt{fill:#F8FAFC;font-size:15px;font-weight:700}
+    .tx{fill:#CBD5E1;font-size:11px;font-weight:500}
+    .miniT{fill:#F8FAFC;font-size:12px;font-weight:700}
+    .mini{fill:#CBD5E1;font-size:10px}
+    .health{fill:#DCFCE7;font-size:17px;font-weight:800}
+    .healthSm{fill:#DCFCE7;font-size:11px;font-weight:600}
+    .flow{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:10 10;animation:dash 1.1s linear infinite}
+    .softFlow{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:6 9;animation:dash 1.6s linear infinite;opacity:.85}
+    .pulse{animation:pulse 2s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+    .pulseFast{animation:pulse 1.3s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+    @keyframes dash{to{stroke-dashoffset:-40}}
+    @keyframes pulse{0%,100%{opacity:1;filter:none}50%{opacity:.78;filter:url(#glow)}}
+  ]]></style>
 </defs>
-<style>
-@keyframes flow { to { stroke-dashoffset: -24; } }
-@keyframes pulseGlow { 0%,100% { opacity: .12; } 50% { opacity: .32; } }
-@media (prefers-reduced-motion: reduce) { .flow { animation: none; } .glow { animation: none; } }
-.flow { stroke-dasharray: 6 5; animation: flow 1.3s linear infinite; }
-.glow { animation: pulseGlow 2.6s ease-in-out infinite; }
-</style>
 
-<rect width="2560" height="1120" fill="#0A0F1C"/>
+<rect width="1600" height="900" fill="url(#bg)"/>
 
-<text x="60" y="55" font-size="30" font-weight="600" fill="#F8FAFC">52 Logistics &#183; Azure Governance &amp; Security Guardrails</text>
-<text x="60" y="84" font-size="15" fill="#38BDF8">Terraform + PowerShell governance platform</text>
-<text x="60" y="112" font-size="13" fill="#8B96AB">Deploy &#8594; Restrict &#8594; Enforce &#8594; Protect &#8594; Monitor &#8594; Alert &#8594; Audit &#8594; Detect drift &#8594; Remediate &#8594; Verify</text>
+<!-- Header -->
+<text x="800" y="42" text-anchor="middle" class="title">52 LOGISTICS — AZURE GOVERNANCE GUARDRAILS</text>
+<text x="800" y="68" text-anchor="middle" class="sub">One connected control path from deployment to verification</text>
 
-<rect x="40" y="170" width="380" height="490" rx="22" fill="#FFFFFF" fill-opacity="0.03" stroke="#1E293B" stroke-width="1"/>
-<rect x="450" y="170" width="380" height="780" rx="22" fill="#FFFFFF" fill-opacity="0.03" stroke="#1E293B" stroke-width="1"/>
-<rect x="860" y="170" width="380" height="420" rx="22" fill="#FFFFFF" fill-opacity="0.03" stroke="#1E293B" stroke-width="1"/>
-<rect x="1270" y="170" width="380" height="590" rx="22" fill="#FFFFFF" fill-opacity="0.03" stroke="#1E293B" stroke-width="1"/>
-<rect x="1680" y="170" width="380" height="520" rx="22" fill="#FFFFFF" fill-opacity="0.03" stroke="#1E293B" stroke-width="1"/>
-<rect x="2090" y="170" width="380" height="450" rx="22" fill="#FFFFFF" fill-opacity="0.03" stroke="#1E293B" stroke-width="1"/>
+<rect x="70" y="92" width="1460" height="44" rx="14" fill="#0F172A" stroke="#334155"/>
+<text x="800" y="120" text-anchor="middle" class="stage">DEPLOY → GOVERN → PROTECT → OBSERVE → DETECT → REMEDIATE → VERIFY</text>
 
-<circle cx="76" cy="200" r="13" fill="#38BDF8"/>
-<text x="76" y="204" text-anchor="middle" font-size="13" font-weight="600" fill="#04263B">1</text>
-<text x="98" y="205" font-size="15" font-weight="600" fill="#F1F5F9">Infrastructure as code</text>
+<!-- MAIN BACKBONE -->
+<text x="175" y="168" text-anchor="middle" class="stage">1. BUILD</text>
+<text x="430" y="168" text-anchor="middle" class="stage">2. GOVERN</text>
+<text x="690" y="168" text-anchor="middle" class="stage">3. AZURE</text>
+<text x="950" y="168" text-anchor="middle" class="stage">4. MONITOR</text>
+<text x="1210" y="168" text-anchor="middle" class="stage">5. RECOVER</text>
+<text x="1450" y="168" text-anchor="middle" class="stage">6. VERIFY</text>
 
-<circle cx="486" cy="200" r="13" fill="#84CC16"/>
-<text x="486" y="204" text-anchor="middle" font-size="13" font-weight="600" fill="#173404">2</text>
-<text x="508" y="205" font-size="15" font-weight="600" fill="#F1F5F9">Governance plane</text>
+<rect x="70" y="190" width="210" height="110" rx="18" fill="#3B0764" stroke="#8B5CF6" stroke-width="3" class="pulse"/>
+<text x="175" y="230" text-anchor="middle" class="nt">Terraform</text>
+<text x="175" y="257" text-anchor="middle" class="tx">Desired governance state</text>
+<text x="175" y="279" text-anchor="middle" class="tx">defined as code</text>
 
-<circle cx="896" cy="200" r="13" fill="#22D3EE"/>
-<text x="896" y="204" text-anchor="middle" font-size="13" font-weight="600" fill="#042C36">3</text>
-<text x="918" y="205" font-size="15" font-weight="600" fill="#F1F5F9">Azure environment</text>
+<rect x="325" y="190" width="210" height="110" rx="18" fill="#4C0519" stroke="#BE123C" stroke-width="3" class="pulse"/>
+<text x="430" y="230" text-anchor="middle" class="nt">Governance</text>
+<text x="430" y="257" text-anchor="middle" class="tx">Policy + RBAC + Budget</text>
+<text x="430" y="279" text-anchor="middle" class="tx">establish guardrails</text>
 
-<circle cx="1306" cy="200" r="13" fill="#C084FC"/>
-<text x="1306" y="204" text-anchor="middle" font-size="13" font-weight="600" fill="#3B0764"/>
-<text x="1306" y="204" text-anchor="middle" font-size="13" font-weight="600" fill="#3B0764">4</text>
-<text x="1328" y="205" font-size="15" font-weight="600" fill="#F1F5F9">Monitoring &amp; alerts</text>
+<rect x="585" y="190" width="210" height="110" rx="18" fill="#0C4A6E" stroke="#38BDF8" stroke-width="3" class="pulse"/>
+<text x="690" y="230" text-anchor="middle" class="nt">Azure</text>
+<text x="690" y="257" text-anchor="middle" class="tx">Subscription + RG</text>
+<text x="690" y="279" text-anchor="middle" class="tx">protected workload scope</text>
 
-<circle cx="1716" cy="200" r="13" fill="#FB923C"/>
-<text x="1716" y="204" text-anchor="middle" font-size="13" font-weight="600" fill="#412402">5</text>
-<text x="1738" y="205" font-size="15" font-weight="600" fill="#F1F5F9">Validation &amp; recovery</text>
+<rect x="845" y="190" width="210" height="110" rx="18" fill="#500724" stroke="#D946EF" stroke-width="3" class="pulse"/>
+<text x="950" y="230" text-anchor="middle" class="nt">Monitoring</text>
+<text x="950" y="257" text-anchor="middle" class="tx">Activity Log + Alerts</text>
+<text x="950" y="279" text-anchor="middle" class="tx">change accountability</text>
 
-<circle cx="2126" cy="200" r="13" fill="#22C55E"/>
-<text x="2126" y="204" text-anchor="middle" font-size="13" font-weight="600" fill="#052E16">6</text>
-<text x="2148" y="205" font-size="15" font-weight="600" fill="#F1F5F9">Governance health</text>
+<rect x="1105" y="190" width="210" height="110" rx="18" fill="#431407" stroke="#F97316" stroke-width="3" class="pulse"/>
+<text x="1210" y="230" text-anchor="middle" class="nt">Drift &amp; Recovery</text>
+<text x="1210" y="257" text-anchor="middle" class="tx">plan detects</text>
+<text x="1210" y="279" text-anchor="middle" class="tx">apply restores</text>
 
-<line x1="400" y1="280" x2="470" y2="280" stroke="#38BDF8" stroke-width="2" class="flow" marker-end="url(#a-blue)"/>
-<line x1="810" y1="282" x2="880" y2="282" stroke="#38BDF8" stroke-width="2" class="flow" marker-end="url(#a-blue)"/>
-<line x1="1220" y1="282" x2="1290" y2="282" stroke="#38BDF8" stroke-width="2" class="flow" marker-end="url(#a-blue)"/>
-<path d="M1220,270 L1255,270 L1255,150 L1870,150 L1870,240" fill="none" stroke="#38BDF8" stroke-width="2" class="flow" marker-end="url(#a-blue)"/>
-<path d="M2040,618 L2075,618 L2075,310 L2110,310" fill="none" stroke="#38BDF8" stroke-width="2" class="flow" marker-end="url(#a-blue)"/>
+<rect x="1370" y="190" width="160" height="110" rx="18" fill="#14532D" stroke="#4ADE80" stroke-width="3" class="pulseFast"/>
+<text x="1450" y="228" text-anchor="middle" class="health">✓ HEALTHY</text>
+<text x="1450" y="258" text-anchor="middle" class="healthSm">Policies 3/3 PASS</text>
+<text x="1450" y="280" text-anchor="middle" class="healthSm">Lock PASS</text>
 
-<g>
-<rect x="60" y="240" width="340" height="90" rx="14" fill="#0F2942" stroke="#38BDF8" stroke-width="1.5"/>
-<text x="230" y="278" text-anchor="middle" font-size="16" font-weight="600" fill="#F1F5F9">Terraform</text>
-<text x="230" y="302" text-anchor="middle" font-size="12" fill="#93C5FD">Defines desired governance state</text>
-</g>
+<!-- Backbone arrows -->
+<path d="M280 245H325" class="flow" stroke="#8B5CF6" stroke-width="4" marker-end="url(#arrowPurple)"/>
+<path d="M535 245H585" class="flow" stroke="#BE123C" stroke-width="4" marker-end="url(#arrowBurgundy)"/>
+<path d="M795 245H845" class="flow" stroke="#38BDF8" stroke-width="4" marker-end="url(#arrowBlue)"/>
+<path d="M1055 245H1105" class="flow" stroke="#D946EF" stroke-width="4" marker-end="url(#arrowMagenta)"/>
+<path d="M1315 245H1370" class="flow" stroke="#F97316" stroke-width="4" marker-end="url(#arrowOrange)"/>
 
-<g>
-<rect x="60" y="354" width="340" height="190" rx="14" fill="#111827" stroke="#334155" stroke-width="1.5"/>
-<text x="84" y="380" font-size="13" font-weight="600" fill="#F1F5F9">Configuration inputs</text>
-<text x="84" y="404" font-size="12" fill="#94A3B8" font-family="Consolas, Menlo, monospace">provider.tf</text>
-<text x="84" y="424" font-size="12" fill="#94A3B8" font-family="Consolas, Menlo, monospace">variables.tf</text>
-<text x="84" y="444" font-size="12" fill="#94A3B8" font-family="Consolas, Menlo, monospace">policies.tf</text>
-<text x="84" y="464" font-size="12" fill="#94A3B8" font-family="Consolas, Menlo, monospace">rbac.tf</text>
-<text x="84" y="484" font-size="12" fill="#94A3B8" font-family="Consolas, Menlo, monospace">locks.tf</text>
-<text x="84" y="504" font-size="12" fill="#94A3B8" font-family="Consolas, Menlo, monospace">monitoring.tf</text>
-<text x="84" y="524" font-size="12" fill="#94A3B8" font-family="Consolas, Menlo, monospace">budgets.tf</text>
-</g>
+<!-- DETAIL BUBBLES -->
+<!-- Terraform children -->
+<rect x="70" y="355" width="210" height="170" rx="16" fill="#1E1B4B" stroke="#6D28D9"/>
+<text x="175" y="386" text-anchor="middle" class="miniT">Terraform Configuration</text>
+<text x="92" y="418" class="mini">provider.tf</text>
+<text x="92" y="441" class="mini">variables.tf</text>
+<text x="92" y="464" class="mini">policies.tf • rbac.tf</text>
+<text x="92" y="487" class="mini">locks.tf • monitoring.tf</text>
+<text x="92" y="510" class="mini">budgets.tf • defender.tf</text>
+<path d="M175 300V355" class="softFlow" stroke="#8B5CF6" stroke-width="2.5" marker-end="url(#arrowPurple)"/>
 
-<g>
-<rect x="60" y="568" width="340" height="70" rx="14" fill="#0B1220" stroke="#334155" stroke-width="1.5"/>
-<text x="230" y="598" text-anchor="middle" font-size="13" font-weight="600" fill="#F1F5F9">Reusable IaC</text>
-<text x="230" y="618" text-anchor="middle" font-size="11" fill="#94A3B8">Keeps governance consistent</text>
-</g>
+<!-- Governance children -->
+<rect x="325" y="345" width="210" height="82" rx="16" fill="#3F0A18" stroke="#9F1239"/>
+<text x="430" y="375" text-anchor="middle" class="miniT">Azure Policy</text>
+<text x="430" y="400" text-anchor="middle" class="mini">Tag • Regions • VM SKUs</text>
 
-<g>
-<rect x="470" y="240" width="340" height="70" rx="12" fill="#142B0C" stroke="#84CC16" stroke-width="1.5"/>
-<text x="640" y="270" text-anchor="middle" font-size="15" font-weight="600" fill="#F1F5F9">Azure Policy</text>
-<text x="640" y="294" text-anchor="middle" font-size="12" fill="#BEF264">Deployment guardrails</text>
-</g>
-<line x1="640" y1="310" x2="640" y2="326" stroke="#64748B" stroke-width="1.3" marker-end="url(#a-slate)"/>
-<g>
-<rect x="470" y="326" width="340" height="44" rx="10" fill="#101A08" stroke="#4D7C0F" stroke-width="1.2"/>
-<text x="486" y="345" font-size="12" font-weight="600" fill="#F1F5F9">Required tag</text>
-<text x="486" y="362" font-size="11" fill="#BEF264">Environment = Production</text>
-</g>
-<g>
-<rect x="470" y="378" width="340" height="44" rx="10" fill="#101A08" stroke="#4D7C0F" stroke-width="1.2"/>
-<text x="486" y="397" font-size="12" font-weight="600" fill="#F1F5F9">Allowed locations</text>
-<text x="486" y="414" font-size="11" fill="#BEF264">eastus / eastus2</text>
-</g>
-<g>
-<rect x="470" y="430" width="340" height="44" rx="10" fill="#101A08" stroke="#4D7C0F" stroke-width="1.2"/>
-<text x="486" y="449" font-size="12" font-weight="600" fill="#F1F5F9">Allowed VM SKUs</text>
-<text x="486" y="466" font-size="11" fill="#BEF264">B1s / B2s</text>
-</g>
+<rect x="325" y="445" width="210" height="80" rx="16" fill="#082F49" stroke="#0284C7"/>
+<text x="430" y="475" text-anchor="middle" class="miniT">RBAC</text>
+<text x="430" y="500" text-anchor="middle" class="mini">Owner • Reader • Contributor</text>
 
-<g>
-<rect x="470" y="494" width="340" height="70" rx="12" fill="#1E1B3A" stroke="#A78BFA" stroke-width="1.5"/>
-<text x="640" y="524" text-anchor="middle" font-size="15" font-weight="600" fill="#F1F5F9">Azure RBAC</text>
-<text x="640" y="548" text-anchor="middle" font-size="12" fill="#DDD6FE">Identity + scope control</text>
-</g>
-<line x1="640" y1="564" x2="640" y2="580" stroke="#64748B" stroke-width="1.3" marker-end="url(#a-slate)"/>
-<g>
-<rect x="470" y="580" width="340" height="50" rx="10" fill="#181534" stroke="#7C6FC4" stroke-width="1.2"/>
-<text x="486" y="601" font-size="12" font-weight="600" fill="#F1F5F9">Governance admin</text>
-<text x="486" y="619" font-size="11" fill="#DDD6FE">Owner @ subscription</text>
-</g>
-<g>
-<rect x="470" y="638" width="340" height="50" rx="10" fill="#181534" stroke="#7C6FC4" stroke-width="1.2"/>
-<text x="486" y="659" font-size="12" font-weight="600" fill="#F1F5F9">Test user</text>
-<text x="486" y="677" font-size="11" fill="#DDD6FE">Reader @ subscription</text>
-</g>
-<g>
-<rect x="470" y="696" width="340" height="50" rx="10" fill="#181534" stroke="#7C6FC4" stroke-width="1.2"/>
-<text x="486" y="717" font-size="12" font-weight="600" fill="#F1F5F9">Test user</text>
-<text x="486" y="735" font-size="11" fill="#DDD6FE">Contributor @ resource group</text>
-</g>
+<path d="M430 300V330H430V345" class="softFlow" stroke="#BE123C" stroke-width="2.5" marker-end="url(#arrowBurgundy)"/>
+<path d="M430 427V445" class="softFlow" stroke="#38BDF8" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
 
-<g>
-<rect x="470" y="770" width="340" height="70" rx="12" fill="#241C08" stroke="#FBBF24" stroke-width="1.5"/>
-<text x="640" y="800" text-anchor="middle" font-size="14" font-weight="600" fill="#F1F5F9">Cost budget</text>
-<text x="640" y="822" text-anchor="middle" font-size="11" fill="#FDE68A">$50/mo threshold</text>
-</g>
+<!-- Azure children -->
+<rect x="585" y="345" width="210" height="82" rx="16" fill="#082F49" stroke="#38BDF8"/>
+<text x="690" y="375" text-anchor="middle" class="miniT">52 Logistics Subscription</text>
+<text x="690" y="400" text-anchor="middle" class="mini">52logistics-rg</text>
 
-<g>
-<rect x="470" y="856" width="340" height="70" rx="12" fill="#0A2A20" stroke="#34D399" stroke-width="1.5"/>
-<text x="640" y="886" text-anchor="middle" font-size="14" font-weight="600" fill="#F1F5F9">Defender for Cloud</text>
-<text x="640" y="908" text-anchor="middle" font-size="11" fill="#6EE7B7">Cloud security posture</text>
-</g>
+<rect x="585" y="445" width="210" height="80" rx="16" fill="#450A0A" stroke="#EF4444" class="pulseFast"/>
+<text x="690" y="475" text-anchor="middle" class="miniT">Management Lock</text>
+<text x="690" y="500" text-anchor="middle" class="mini">rg_delete_lock • CanNotDelete</text>
 
-<rect x="860" y="228" width="380" height="132" rx="20" fill="#38BDF8" class="glow"/>
-<g>
-<rect x="880" y="240" width="340" height="100" rx="14" fill="#0C4A6E" stroke="#38BDF8" stroke-width="2"/>
-<text x="1050" y="282" text-anchor="middle" font-size="17" font-weight="600" fill="#F8FAFC">Azure subscription</text>
-<text x="1050" y="308" text-anchor="middle" font-size="12" fill="#93C5FD">52 Logistics LLC</text>
-</g>
-<line x1="1050" y1="340" x2="1050" y2="356" stroke="#22D3EE" stroke-width="1.8" class="flow" marker-end="url(#a-cyan)"/>
+<path d="M690 300V345" class="softFlow" stroke="#38BDF8" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+<path d="M690 427V445" class="softFlow" stroke="#EF4444" stroke-width="2.5" marker-end="url(#arrowRed)"/>
 
-<g>
-<rect x="880" y="364" width="340" height="90" rx="12" fill="#072A40" stroke="#22D3EE" stroke-width="1.5"/>
-<text x="1050" y="400" text-anchor="middle" font-size="15" font-weight="600" fill="#F1F5F9">52logistics-rg</text>
-<text x="1050" y="424" text-anchor="middle" font-size="12" fill="#67E8F9">Protected workload scope</text>
-</g>
-<line x1="1050" y1="454" x2="1050" y2="470" stroke="#64748B" stroke-width="1.3" marker-end="url(#a-slate)"/>
+<!-- Monitoring children -->
+<rect x="845" y="345" width="210" height="82" rx="16" fill="#500724" stroke="#D946EF"/>
+<text x="950" y="375" text-anchor="middle" class="miniT">Azure Activity Log</text>
+<text x="950" y="400" text-anchor="middle" class="mini">Who changed what and when</text>
 
-<g>
-<rect x="880" y="478" width="340" height="80" rx="12" fill="#3A2008" stroke="#F59E0B" stroke-width="1.5"/>
-<text x="1050" y="513" text-anchor="middle" font-size="14" font-weight="600" fill="#F1F5F9">Management lock</text>
-<text x="1050" y="535" text-anchor="middle" font-size="11" fill="#FDE68A">rg_delete_lock &#183; CanNotDelete</text>
-</g>
+<rect x="845" y="445" width="210" height="80" rx="16" fill="#4A044E" stroke="#E879F9" class="pulseFast"/>
+<text x="950" y="475" text-anchor="middle" class="miniT">Alerts + Action Group</text>
+<text x="950" y="500" text-anchor="middle" class="mini">Lock / Policy delete → Email</text>
 
-<g>
-<rect x="1290" y="240" width="340" height="70" rx="12" fill="#2E1065" stroke="#C084FC" stroke-width="1.5"/>
-<text x="1460" y="270" text-anchor="middle" font-size="15" font-weight="600" fill="#F1F5F9">monitoring_rg</text>
-<text x="1460" y="294" text-anchor="middle" font-size="12" fill="#E9D5FF">Monitoring resources</text>
-</g>
-<line x1="1460" y1="310" x2="1460" y2="326" stroke="#C084FC" stroke-width="1.8" class="flow" marker-end="url(#a-violet)"/>
+<path d="M950 300V345" class="softFlow" stroke="#D946EF" stroke-width="2.5" marker-end="url(#arrowMagenta)"/>
+<path d="M950 427V445" class="softFlow" stroke="#E879F9" stroke-width="2.5" marker-end="url(#arrowMagenta)"/>
 
-<g>
-<rect x="1290" y="330" width="340" height="80" rx="12" fill="#101826" stroke="#60A5FA" stroke-width="1.5"/>
-<text x="1460" y="365" text-anchor="middle" font-size="15" font-weight="600" fill="#F1F5F9">Azure Activity Log</text>
-<text x="1460" y="388" text-anchor="middle" font-size="12" fill="#93C5FD">Records admin operations</text>
-</g>
-<line x1="1460" y1="410" x2="1460" y2="426" stroke="#C084FC" stroke-width="1.8" class="flow" marker-end="url(#a-violet)"/>
+<!-- Recovery children -->
+<rect x="1105" y="345" width="210" height="82" rx="16" fill="#431407" stroke="#F97316"/>
+<text x="1210" y="375" text-anchor="middle" class="miniT">DRIFT DETECTED</text>
+<text x="1210" y="400" text-anchor="middle" class="mini">Desired state ≠ live Azure</text>
 
-<g>
-<rect x="1290" y="430" width="340" height="50" rx="10" fill="#2A1050" stroke="#A855F7" stroke-width="1.3"/>
-<text x="1306" y="451" font-size="12" font-weight="600" fill="#F1F5F9">Lock deletion alert</text>
-<text x="1306" y="469" font-size="11" fill="#E9D5FF">Fires on management lock removal</text>
-</g>
-<line x1="1460" y1="480" x2="1460" y2="486" stroke="#C084FC" stroke-width="1.8" class="flow" marker-end="url(#a-violet)"/>
-<g>
-<rect x="1290" y="490" width="340" height="50" rx="10" fill="#2A1050" stroke="#A855F7" stroke-width="1.3"/>
-<text x="1306" y="511" font-size="12" font-weight="600" fill="#F1F5F9">Policy deletion alert</text>
-<text x="1306" y="529" font-size="11" fill="#E9D5FF">Fires on policy assignment removal</text>
-</g>
-<line x1="1460" y1="540" x2="1460" y2="556" stroke="#C084FC" stroke-width="1.8" class="flow" marker-end="url(#a-violet)"/>
+<rect x="1105" y="445" width="210" height="80" rx="16" fill="#052E16" stroke="#15803D"/>
+<text x="1210" y="475" text-anchor="middle" class="miniT">PowerShell Audit</text>
+<text x="1210" y="500" text-anchor="middle" class="mini">Policies • RBAC • Lock</text>
 
-<g>
-<rect x="1290" y="560" width="340" height="75" rx="12" fill="#3B0764" stroke="#D946EF" stroke-width="1.5"/>
-<text x="1460" y="592" text-anchor="middle" font-size="14" font-weight="600" fill="#F1F5F9">Action group</text>
-<text x="1460" y="614" text-anchor="middle" font-size="11" fill="#F5D0FE">52logistics-governance-alerts</text>
-</g>
-<line x1="1460" y1="635" x2="1460" y2="651" stroke="#C084FC" stroke-width="1.8" class="flow" marker-end="url(#a-violet)"/>
+<path d="M1210 300V345" class="softFlow" stroke="#F97316" stroke-width="2.5" marker-end="url(#arrowOrange)"/>
+<path d="M1210 427V445" class="softFlow" stroke="#15803D" stroke-width="2.5" marker-end="url(#arrowGreen)"/>
 
-<g>
-<rect x="1290" y="655" width="340" height="75" rx="12" fill="#1A1F30" stroke="#E879F9" stroke-width="1.5"/>
-<text x="1460" y="687" text-anchor="middle" font-size="14" font-weight="600" fill="#F1F5F9">Email notification</text>
-<text x="1460" y="709" text-anchor="middle" font-size="11" fill="#F5D0FE">Governance administrator</text>
-</g>
+<!-- Health children -->
+<rect x="1370" y="345" width="160" height="180" rx="16" fill="#052E16" stroke="#22C55E"/>
+<text x="1390" y="382" class="healthSm">✓ Policies 3/3</text>
+<text x="1390" y="417" class="healthSm">✓ Lock PASS</text>
+<text x="1390" y="452" class="healthSm">✓ RBAC Validated</text>
+<text x="1390" y="487" class="healthSm">✓ Monitoring Active</text>
+<path d="M1450 300V345" class="softFlow" stroke="#4ADE80" stroke-width="2.5" marker-end="url(#arrowGreen)"/>
 
-<g>
-<rect x="1700" y="240" width="340" height="80" rx="12" fill="#3A1608" stroke="#FB923C" stroke-width="1.5"/>
-<text x="1870" y="272" text-anchor="middle" font-size="15" font-weight="600" fill="#F1F5F9">terraform plan</text>
-<text x="1870" y="296" text-anchor="middle" font-size="12" fill="#FDBA74">Detects configuration drift</text>
-</g>
-<line x1="1870" y1="320" x2="1870" y2="336" stroke="#FB923C" stroke-width="2" class="flow" marker-end="url(#a-orange)"/>
+<!-- Cross-links between lower bubbles to make system feel connected -->
+<path d="M535 386H585" class="softFlow" stroke="#BE123C" stroke-width="2" marker-end="url(#arrowBurgundy)"/>
+<path d="M795 386H845" class="softFlow" stroke="#38BDF8" stroke-width="2" marker-end="url(#arrowBlue)"/>
+<path d="M1055 386H1105" class="softFlow" stroke="#D946EF" stroke-width="2" marker-end="url(#arrowMagenta)"/>
+<path d="M1315 386H1370" class="softFlow" stroke="#F97316" stroke-width="2" marker-end="url(#arrowOrange)"/>
 
-<g>
-<rect x="1700" y="340" width="340" height="80" rx="12" fill="#3A0A0A" stroke="#F87171" stroke-width="1.5"/>
-<text x="1870" y="372" text-anchor="middle" font-size="15" font-weight="600" fill="#F1F5F9">Drift detected</text>
-<text x="1870" y="396" text-anchor="middle" font-size="12" fill="#FCA5A5">Desired state &#8800; Azure</text>
-</g>
-<line x1="1870" y1="420" x2="1870" y2="436" stroke="#FB923C" stroke-width="2" class="flow" marker-end="url(#a-orange)"/>
+<!-- Bottom scenario flow -->
+<rect x="60" y="595" width="1480" height="190" rx="20" fill="#0F172A" stroke="#334155"/>
+<text x="85" y="628" class="stage">LIVE GOVERNANCE EVENT FLOW — WHAT HAPPENS WHEN A CONTROL IS CHANGED OUTSIDE TERRAFORM?</text>
 
-<g>
-<rect x="1700" y="440" width="340" height="80" rx="12" fill="#3A1608" stroke="#FB923C" stroke-width="1.5"/>
-<text x="1870" y="472" text-anchor="middle" font-size="15" font-weight="600" fill="#F1F5F9">terraform apply</text>
-<text x="1870" y="496" text-anchor="middle" font-size="12" fill="#FDBA74">Restores governance control</text>
-</g>
-<text x="1870" y="538" text-anchor="middle" font-size="11" fill="#64748B">&#8635; restores desired state</text>
+<rect x="90" y="665" width="205" height="76" rx="14" fill="#4C0519" stroke="#BE123C"/>
+<text x="193" y="695" text-anchor="middle" class="miniT">1. Policy Deleted</text>
+<text x="193" y="720" text-anchor="middle" class="mini">Out-of-band admin change</text>
 
-<g>
-<rect x="1700" y="568" width="340" height="100" rx="12" fill="#0C3A56" stroke="#38BDF8" stroke-width="1.5"/>
-<text x="1870" y="600" text-anchor="middle" font-size="14" font-weight="600" fill="#F1F5F9">PowerShell audit</text>
-<text x="1870" y="624" text-anchor="middle" font-size="11" fill="#93C5FD">Azure CLI + live Azure queries</text>
-<text x="1870" y="644" text-anchor="middle" font-size="11" fill="#93C5FD">Validates policy, RBAC, lock</text>
-</g>
+<rect x="350" y="665" width="205" height="76" rx="14" fill="#500724" stroke="#D946EF"/>
+<text x="453" y="695" text-anchor="middle" class="miniT">2. Activity Logged</text>
+<text x="453" y="720" text-anchor="middle" class="mini">Caller + operation captured</text>
 
-<rect x="2090" y="228" width="380" height="172" rx="20" fill="#22C55E" class="glow"/>
-<g>
-<rect x="2110" y="240" width="340" height="140" rx="14" fill="#052E16" stroke="#22C55E" stroke-width="2.5"/>
-<text x="2280" y="298" text-anchor="middle" font-size="19" font-weight="600" fill="#F1F5F9">&#10003; Governance healthy</text>
-<text x="2280" y="326" text-anchor="middle" font-size="12" fill="#6EE7B7">All checks passing</text>
-</g>
-<line x1="2280" y1="380" x2="2280" y2="404" stroke="#64748B" stroke-width="1.3" marker-end="url(#a-slate)"/>
+<rect x="610" y="665" width="205" height="76" rx="14" fill="#4A044E" stroke="#E879F9"/>
+<text x="713" y="695" text-anchor="middle" class="miniT">3. Alert Sent</text>
+<text x="713" y="720" text-anchor="middle" class="mini">Governance admin notified</text>
 
-<g>
-<rect x="2110" y="410" width="340" height="180" rx="12" fill="#0B1F13" stroke="#166534" stroke-width="1.5"/>
-<text x="2134" y="438" font-size="12" fill="#6EE7B7">&#10003; Policies 3/3 pass</text>
-<text x="2134" y="470" font-size="12" fill="#6EE7B7">&#10003; Management lock pass</text>
-<text x="2134" y="502" font-size="12" fill="#6EE7B7">&#10003; RBAC validated</text>
-<text x="2134" y="534" font-size="12" fill="#6EE7B7">&#10003; Monitoring active</text>
-<text x="2134" y="566" font-size="12" fill="#6EE7B7">&#10003; Budget active</text>
-</g>
+<rect x="870" y="665" width="205" height="76" rx="14" fill="#431407" stroke="#F97316"/>
+<text x="973" y="695" text-anchor="middle" class="miniT">4. Drift Detected</text>
+<text x="973" y="720" text-anchor="middle" class="mini">Terraform sees missing control</text>
 
-<circle cx="60" cy="1005" r="5" fill="#38BDF8"/>
-<text x="72" y="1009" font-size="12" fill="#94A3B8">Infrastructure &amp; Azure</text>
-<circle cx="300" cy="1005" r="5" fill="#84CC16"/>
-<text x="312" y="1009" font-size="12" fill="#94A3B8">Policy</text>
-<circle cx="420" cy="1005" r="5" fill="#A78BFA"/>
-<text x="432" y="1009" font-size="12" fill="#94A3B8">Identity &amp; RBAC</text>
-<circle cx="600" cy="1005" r="5" fill="#C084FC"/>
-<text x="612" y="1009" font-size="12" fill="#94A3B8">Monitoring &amp; alerts</text>
-<circle cx="800" cy="1005" r="5" fill="#FB923C"/>
-<text x="812" y="1009" font-size="12" fill="#94A3B8">Drift &amp; remediation</text>
-<circle cx="1000" cy="1005" r="5" fill="#22C55E"/>
-<text x="1012" y="1009" font-size="12" fill="#94A3B8">Healthy state</text>
+<rect x="1130" y="665" width="205" height="76" rx="14" fill="#052E16" stroke="#15803D"/>
+<text x="1233" y="695" text-anchor="middle" class="miniT">5. Control Restored</text>
+<text x="1233" y="720" text-anchor="middle" class="mini">terraform apply remediates</text>
 
-<text x="60" y="1044" font-size="13" fill="#94A3B8">Outcomes: infrastructure as code, scoped RBAC, policy enforcement, resource locks, cost guardrails, automated alerting, drift detection, live validation</text>
+<rect x="1390" y="665" width="120" height="76" rx="14" fill="#14532D" stroke="#4ADE80" class="pulseFast"/>
+<text x="1450" y="695" text-anchor="middle" class="miniT">6. Healthy</text>
+<text x="1450" y="720" text-anchor="middle" class="mini">Verified</text>
 
-<text x="60" y="1082" font-size="16" font-weight="600" fill="#38BDF8">52 LOGISTICS &#183; Governed. Monitored. Recoverable.</text>
+<path d="M295 703H350" class="flow" stroke="#BE123C" stroke-width="3" marker-end="url(#arrowBurgundy)"/>
+<path d="M555 703H610" class="flow" stroke="#D946EF" stroke-width="3" marker-end="url(#arrowMagenta)"/>
+<path d="M815 703H870" class="flow" stroke="#F97316" stroke-width="3" marker-end="url(#arrowOrange)"/>
+<path d="M1075 703H1130" class="flow" stroke="#15803D" stroke-width="3" marker-end="url(#arrowGreen)"/>
+<path d="M1335 703H1390" class="flow" stroke="#4ADE80" stroke-width="3" marker-end="url(#arrowGreen)"/>
 
+<!-- Exception note -->
+<rect x="60" y="815" width="1480" height="50" rx="12" fill="#111827" stroke="#7F1D1D"/>
+<text x="85" y="846" class="tx" font-weight="600">DOCUMENTED EXCEPTION: monitoring_rg is excluded from Allowed Locations because some Azure monitoring resources may require global scope.</text>
 </svg>
