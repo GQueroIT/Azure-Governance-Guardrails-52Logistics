@@ -1,0 +1,46 @@
+name: Terraform Apply
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'terraform/**'
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    env:
+      TF_VAR_subscription_id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      TF_VAR_resource_group_name: ${{ vars.TF_RESOURCE_GROUP_NAME }}
+      TF_VAR_resource_group_name_monitor: ${{ vars.TF_RESOURCE_GROUP_NAME_MONITOR }}
+      TF_VAR_resource_group_location: ${{ vars.TF_RESOURCE_GROUP_LOCATION }}
+      TF_VAR_principal_id: ${{ secrets.TF_PRINCIPAL_ID }}
+      TF_VAR_testuser_principal_id: ${{ secrets.TF_TESTUSER_PRINCIPAL_ID }}
+      TF_VAR_budget_notification_email: ${{ vars.TF_BUDGET_NOTIFICATION_EMAIL }}
+      TF_VAR_governance_alert_email: ${{ secrets.TF_GOVERNANCE_ALERT_EMAIL }}
+    defaults:
+      run:
+        working-directory: terraform
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve -input=false
