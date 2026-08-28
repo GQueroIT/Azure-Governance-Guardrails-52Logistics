@@ -14,6 +14,15 @@ permissions:
 jobs:
   plan:
     runs-on: ubuntu-latest
+    env:
+      TF_VAR_subscription_id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      TF_VAR_resource_group_name: ${{ vars.TF_RESOURCE_GROUP_NAME }}
+      TF_VAR_resource_group_name_monitor: ${{ vars.TF_RESOURCE_GROUP_NAME_MONITOR }}
+      TF_VAR_resource_group_location: ${{ vars.TF_RESOURCE_GROUP_LOCATION }}
+      TF_VAR_principal_id: ${{ secrets.TF_PRINCIPAL_ID }}
+      TF_VAR_testuser_principal_id: ${{ secrets.TF_TESTUSER_PRINCIPAL_ID }}
+      TF_VAR_budget_notification_email: ${{ vars.TF_BUDGET_NOTIFICATION_EMAIL }}
+      TF_VAR_governance_alert_email: ${{ secrets.TF_GOVERNANCE_ALERT_EMAIL }}
     defaults:
       run:
         working-directory: terraform
