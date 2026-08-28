@@ -11,6 +11,6 @@ resource "azurerm_resource_group" "monitoring_rg" {
   location = var.resource_group_location
   tags = {
     Environment = "Production"
-    Pipeline = "testing123
+    Pipeline = "testing123"
   }
 }
